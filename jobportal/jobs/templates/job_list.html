@@ -1,0 +1,24 @@
+{% load static %}
+{% block body %}
+{% include 'navigation.html' %}
+
+<div class="container mt-4">
+
+    <h3>All Jobs</h3>
+
+    <form method="GET" action="{% url 'search_job' %}">
+        <input type="text" name="q" placeholder="Search job" class="form-control mb-3">
+    </form>
+
+    {% for job in jobs %}
+    <div class="card mb-3 p-3 shadow">
+        <h4>{{ job.title }}</h4>
+        <p>{{ job.company }} - {{ job.location }}</p>
+
+        <a href="{% url 'apply_job' job.id %}" class="btn btn-success">Apply</a>
+    </div>
+    {% endfor %}
+
+</div>
+
+{% endblock %}

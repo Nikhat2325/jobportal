@@ -1,0 +1,23 @@
+{% load static %}
+{% include 'navigation.html' %}
+
+<div class="container mt-4">
+
+    <h3>Applicant Details</h3>
+
+    <div class="card p-3">
+
+        <p><b>Username:</b> {{ app.user.username }}</p>
+        <p><b>Email:</b> {{ app.user.email }}</p>
+
+        {% if app.user.studentuser %}
+            <p><b>Mobile:</b> {{ app.user.studentuser.mobile }}</p>
+            <p><b>Gender:</b> {{ app.user.studentuser.gender }}</p>
+        {% endif %}
+
+        <p><b>Applied Job:</b> {{ app.job.title }}</p>
+        <p><b>Company:</b> {{ app.job.company }}</p>
+
+    </div>
+
+</div>

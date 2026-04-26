@@ -1,0 +1,39 @@
+{% load static %}
+{% block body %}
+{% include 'navigation.html' %}
+
+<div class="container mt-4">
+    <h3>My Posted Jobs</h3>
+
+    <a href="{% url 'add_job' %}" class="btn btn-primary mb-3">Add New Job</a>
+
+    {% for job in jobs %}
+    <div class="card p-3 mb-3">
+
+        <h4>{{ job.title }}</h4>
+        <p>{{ job.company }} - {{ job.location }}</p>
+
+        <hr>
+
+        <h6>Applicants:</h6>
+
+        {% for app in job.application_set.all %}
+            <div class="d-flex justify-content-between align-items-center mb-2">
+
+                <span>👤 {{ app.user.username }}</span>
+
+                <a href="{% url 'applicant_detail' app.id %}" class="btn btn-info btn-sm">
+                    View Details
+                </a>
+
+            </div>
+        {% empty %}
+            <p>No applications yet</p>
+        {% endfor %}
+
+    </div>
+    {% endfor %}
+
+</div>
+
+{% endblock %}

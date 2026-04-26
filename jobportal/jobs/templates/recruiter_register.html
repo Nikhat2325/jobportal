@@ -1,0 +1,90 @@
+{% load static %}
+
+{% include 'navigation.html' %}
+
+<div class="container" style="margin-top:5%;">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+
+            <div class="card shadow-lg">
+
+                <div class="card-header text-center bg-primary text-white">
+                    <h4>Recruiter Register</h4>
+                </div>
+
+                <div class="card-body">
+
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+                            <label>Username</label>
+                            <input type="text" name="username" class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Email</label>
+                            <input type="email" name="email" class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Password</label>
+                            <input type="password" name="password" class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Mobile</label>
+                            <input type="text" name="mobile" class="form-control">
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Gender</label>
+                            <select name="gender" class="form-control">
+                                <option>Male</option>
+                                <option>Female</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Profile Image</label>
+                            <input type="file" name="image" class="form-control">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">
+                            Register as Recruiter
+                        </button>
+
+                    </form>
+
+                    {% if error == "no" %}
+                        <p style="color:green;margin-top:10px;">Registration Successful</p>
+                    {% elif error == "yes" %}
+                        <p style="color:red;margin-top:10px;">Something went wrong</p>
+                    {% endif %}
+
+                </div>
+
+                <div class="card-footer text-center">
+                    Already have account?
+                    <a href="{% url 'recruiter_login' %}">Login</a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>  <!-- card-body end -->
+
+{% if error == "no" %}
+<script>
+    alert("Registration Successful!");
+    window.location.href = "{% url 'recruiter_login' %}";
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert("Something went wrong! Try again.");
+</script>
+{% endif %}

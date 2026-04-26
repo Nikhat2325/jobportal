@@ -1,0 +1,19 @@
+{% load static %}
+{% block body %}
+{% include 'navigation.html' %}
+
+<div class="container mt-4">
+    <h3>My Applications</h3>
+
+    {% for app in apps %}
+    <div class="card mb-3 p-3 shadow">
+        <h4>{{ app.job.title }}</h4>
+        <p>{{ app.job.company }}</p>
+
+        <a href="{% url 'delete_application' app.id %}" class="btn btn-danger">Delete</a>
+    </div>
+    {% endfor %}
+
+</div>
+
+{% endblock %}
